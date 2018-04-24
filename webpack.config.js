@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 const path = require('path')
 
 const htmlPlugin = new HtmlWebPackPlugin({
@@ -9,6 +10,14 @@ const htmlPlugin = new HtmlWebPackPlugin({
 module.exports = {
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules']
+  },
+  entry: [
+    'webpack/hot/only-dev-server',
+    './src/index.js'
+  ],
+  devServer: {
+    contentBase: './dist',
+    hot: true
   },
   module: {
     rules: [
@@ -25,5 +34,9 @@ module.exports = {
       }
     ]
   },
-  plugins: [htmlPlugin]
+  plugins: [
+    htmlPlugin,
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }
