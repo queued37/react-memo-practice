@@ -4,8 +4,9 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production"
+    "start": "cross-env BABEL_ENV=server-dev nodemon --exec babel-node ./server/main.js --watch server",
+    "start:front": "webpack-dev-server --open",
+    "build": "cross-env BABEL_ENV=server-dev babel server --out-dir build && webpack"
   },
   "keywords": [],
   "author": "queued37",
@@ -15,7 +16,9 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.18.2",
     "css-loader": "^0.28.11",
+    "express": "^4.16.3",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.8.3",
     "react": "^16.3.2",
@@ -25,9 +28,13 @@
     "webpack-cli": "^2.0.15"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "cross-env": "^5.1.4",
+    "nodemon": "^1.17.3",
     "react-hot-loader": "^4.1.1",
     "standard": "^11.0.1",
     "style-loader": "^0.21.0",
+    "webpack-dev-middleware": "^3.1.2",
     "webpack-dev-server": "^3.1.3"
   }
 }

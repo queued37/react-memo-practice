@@ -1,6 +1,10 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const path = require('path')
+const process = require('process')
+
+process.env.BABEL_ENV = 'client-dev'
+process.env.NODE_ENV = 'development'
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: './src/index.html',
@@ -8,6 +12,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 })
 
 module.exports = {
+  mode: 'development',
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules']
   },
