@@ -21,7 +21,7 @@ const db = mongoose.connection
 db.on('error', console.error)
 db.once('open', () => { console.log('Connected to mongodb server') })
 // mongoose.connect('mongodb://username:password@host:port/database=')
-mongoose.connect('mongodb://localhost/react-memo')
+mongoose.connect('mongodb://react-memo:react-memo@localhost/react-memo')
 
 // app.use('/', express.static(distPath)) // production
 app.use(morgan('dev'))
