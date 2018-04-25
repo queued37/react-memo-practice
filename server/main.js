@@ -7,7 +7,10 @@ import webpack from 'webpack'
 import webpackMiddleware from 'webpack-dev-middleware'
 // import path from 'path'
 
+import api from './routes'
+
 import config from '../webpack.config'
+
 const isProduction = process.env.NODE_ENV === 'production'
 const port = isProduction ? process.env.PORT : 3000
 // const distPath = path.resolve(__dirname, '../dist') // production
@@ -21,8 +24,8 @@ db.once('open', () => { console.log('Connected to mongodb server') })
 mongoose.connect('mongodb://localhost/react-memo')
 
 // app.use('/', express.static(distPath)) // production
-app.use(morgan('dev'));
-app.use(bodyParser.json());
+app.use(morgan('dev'))
+app.use(bodyParser.json())
 app.use(webpackMiddleware(compiler, { // development
   publicPath: '/'
 }))
@@ -31,6 +34,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+
+app.use('/api', api)
 
 app.listen(port, () => {
   console.log('Server running on port ' + port)
