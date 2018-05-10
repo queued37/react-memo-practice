@@ -14,7 +14,6 @@ const router = express.Router()
  */
 router.post('/sign-up', (req, res) => {
   const usernameRegex = /^[a-z0-9]+$/
-  console.log(req.body.username)
 
   // Check username format
   if (!usernameRegex.test(req.body.username)) {
@@ -110,7 +109,6 @@ router.post('/sign-in', (req, res) => {
  *   1: NOT SIGNED IN
  */
 router.get('/get-info', (req, res) => {
-  console.log(req.session)
   if (typeof req.session.loginInfo === 'undefined') {
     return res.status(401).json({
       error: 'NOT SIGNED IN',
