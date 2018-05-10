@@ -8,9 +8,9 @@ const router = express.Router()
  * POST /api/account/sign-up
  * Body example: { "username": "test", "password": "test" }
  * Error codes:
- *   1: Bad username
- *   2: Bad password
- *   3: Username exists
+ *   1: BAD USERNAME
+ *   2: BAD PASSWORD
+ *   3: USERNAME EXISTS
  */
 router.post('/sign-up', (req, res) => {
   const usernameRegex = /^[a-z0-9]+$/
@@ -19,7 +19,7 @@ router.post('/sign-up', (req, res) => {
   // Check username format
   if (!usernameRegex.test(req.body.username)) {
     return res.status(400).json({
-      error: 'Bad Username',
+      error: 'BAD USERNAME',
       code: 1
     })
   }
@@ -27,7 +27,7 @@ router.post('/sign-up', (req, res) => {
   // Check password length
   if (req.body.password.length < 4 || typeof req.body.password !== 'string') {
     return res.status(400).json({
-      error: 'Bad password',
+      error: 'BAD PASSWORD',
       code: 2
     })
   }
@@ -37,7 +37,7 @@ router.post('/sign-up', (req, res) => {
     if (err) throw err
     if (exists) {
       return res.status(409).json({
-        error: 'Username exists',
+        error: 'USERNAME EXISTS',
         code: 3
       })
     }
@@ -61,12 +61,12 @@ router.post('/sign-up', (req, res) => {
  * POST /api/account/sign-in
  * Body example: { "username": "test", "password": "test" }
  * Error codes:
- *   1: Login failed
+ *   1: LOGIN FAILED
  */
 router.post('/sign-in', (req, res) => {
   if (typeof req.body.password !== 'string') {
     return res.status(400).json({
-      error: 'Login failed',
+      error: 'LOGIN FAILED',
       code: 1
     })
   }
@@ -77,7 +77,7 @@ router.post('/sign-in', (req, res) => {
     // Check account existence
     if (!account) {
       return res.status(401).json({
-        error: 'Login failed',
+        error: 'LOGIN FAILED',
         code: 1
       })
     }
@@ -85,7 +85,7 @@ router.post('/sign-in', (req, res) => {
     // Validate password
     if (!account.validateHash(req.body.password)) {
       return res.status(401).json({
-        error: 'Login failed',
+        error: 'LOGIN FAILED',
         code: 1
       })
     }
@@ -107,13 +107,14 @@ router.post('/sign-in', (req, res) => {
  * Get session info
  * GET /api/account/get-info
  * Error codes:
- *   1: Not logged in
+ *   1: NOT SIGNED IN
  */
 router.get('/get-info', (req, res) => {
   console.log(req.session)
   if (typeof req.session.loginInfo === 'undefined') {
     return res.status(401).json({
-      error: 1
+      error: 'NOT SIGNED IN',
+      code: 1
     })
   }
 
