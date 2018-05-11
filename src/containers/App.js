@@ -27,19 +27,26 @@ const style = {
   '@global': {
     'html, body': {
       height: '100%',
-      padding: 0
+      margin: 0
     },
     body: {
       backgroundColor: '#fbf7ee'
     }
+  },
+  content: {
+    marginTop: 80
   }
 }
 
-const App = () => {
+const App = (props) => {
+  const { classes } = props
   return (
     <MuiThemeProvider theme={theme}>
       <div>
         <Header />
+        <div className={classes.content}>
+          { props.children }
+        </div>
       </div>
     </MuiThemeProvider>
   )

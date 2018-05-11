@@ -9,9 +9,6 @@ import IconButton from 'material-ui/IconButton'
 import SearchIcon from '@material-ui/icons/Search'
 
 const styles = {
-  root: {
-    flexGrow: 1
-  },
   flex: {
     flex: 1
   }
@@ -20,7 +17,7 @@ const styles = {
 const Header = (props) => {
   const { classes } = props
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar>
         <Toolbar>
           <IconButton color='inherit' aria-label='Menu'>

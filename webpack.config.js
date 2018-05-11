@@ -22,7 +22,8 @@ module.exports = {
   ],
   devServer: {
     contentBase: './dist',
-    hot: true
+    hot: true,
+    historyApiFallback: true
   },
   module: {
     rules: [

@@ -5,6 +5,7 @@ import mongoose from 'mongoose'
 import session from 'express-session'
 import webpack from 'webpack'
 import webpackMiddleware from 'webpack-dev-middleware'
+import historyApiFallback from 'connect-history-api-fallback'
 // import path from 'path'
 
 import api from './routes'
@@ -23,9 +24,10 @@ db.once('open', () => { console.log('Connected to mongodb server') })
 // mongoose.connect('mongodb://username:password@host:port/database=')
 mongoose.connect('mongodb://react-memo:react-memo@localhost/react-memo')
 
-// app.use('/', express.static(distPath)) // production
+// Middlewares
 app.use(morgan('dev'))
 app.use(bodyParser.json())
+app.use(historyApiFallback())
 app.use(webpackMiddleware(compiler, { // development
   publicPath: '/'
 }))
@@ -35,8 +37,14 @@ app.use(session({
   saveUninitialized: true
 }))
 
+// Routes
 app.use('/api', api)
+// Client-side routing (production)
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, './../dist/index.html'))
+// })
 
+// Listen
 app.listen(port, () => {
   console.log('Server running on port ' + port)
 })
