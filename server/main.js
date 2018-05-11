@@ -27,10 +27,6 @@ mongoose.connect('mongodb://react-memo:react-memo@localhost/react-memo')
 // Middlewares
 app.use(morgan('dev'))
 app.use(bodyParser.json())
-app.use(historyApiFallback())
-app.use(webpackMiddleware(compiler, { // development
-  publicPath: '/'
-}))
 app.use(session({
   secret: '9e9f9cb46efa5c619dbe452848ae38eb745e7536',
   resave: false,
@@ -39,8 +35,12 @@ app.use(session({
 
 // Routes
 app.use('/api', api)
-// Client-side routing (production)
-// app.get('*', (req, res) => {
+// Client-side routing
+app.use(historyApiFallback())
+app.use(webpackMiddleware(compiler, { // development
+  publicPath: '/'
+}))
+// app.get('*', (req, res) => { // production
 //   res.sendFile(path.resolve(__dirname, './../dist/index.html'))
 // })
 
