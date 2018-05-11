@@ -56,13 +56,13 @@ router.post('/sign-up', (req, res) => {
 })
 
 /**
- * Account sign in
- * POST /api/account/sign-in
+ * Account log in
+ * POST /api/account/login
  * Body example: { "username": "test", "password": "test" }
  * Error codes:
  *   1: LOGIN FAILED
  */
-router.post('/sign-in', (req, res) => {
+router.post('/login', (req, res) => {
   if (typeof req.body.password !== 'string') {
     return res.status(400).json({
       error: 'LOGIN FAILED',
