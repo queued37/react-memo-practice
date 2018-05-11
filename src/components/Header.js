@@ -29,14 +29,14 @@ const Header = (props) => {
           <Typography variant='title' color='inherit' className={classes.flex}>
             Memo Practice
           </Typography>
-          <Button color='inherit'>Login</Button>
+          <Button color='inherit'>Sign in</Button>
         </Toolbar>
       </AppBar>
     </div>
   )
 }
 
-Header.PropTypes = {
+Header.propTypes = {
   classes: PropTypes.object
 }
 
