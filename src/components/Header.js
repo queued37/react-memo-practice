@@ -29,7 +29,10 @@ const Header = (props) => {
           <Typography variant='title' color='inherit' className={classes.flex}>
             Memo Practice
           </Typography>
-          <Button color='inherit'>Sign in</Button>
+          {props.isSignedIn
+            ? <Button color='inherit'>Sign out</Button>
+            : <Button color='inherit'>Sign in</Button>
+          }
         </Toolbar>
       </AppBar>
     </div>
@@ -37,7 +40,14 @@ const Header = (props) => {
 }
 
 Header.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  isSignedIn: PropTypes.bool,
+  onLogout: PropTypes.func
+}
+
+Header.defaultProps = {
+  isSignedIn: false,
+  onLogout: () => { console.error('onLogout not defined') }
 }
 
 export default withStyles(styles)(Header)
