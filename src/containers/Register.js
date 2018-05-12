@@ -1,11 +1,12 @@
 import React from 'react'
+import { GenericLayout } from 'components'
 
 class Register extends React.Component {
   render () {
     return (
-      <div>
+      <GenericLayout>
         Register
-      </div>
+      </GenericLayout>
     )
   }
 }

@@ -1,11 +1,12 @@
 import React from 'react'
+import { GenericLayout } from 'components'
 
 class SignIn extends React.Component {
   render () {
     return (
-      <div>
+      <GenericLayout>
         Sign in
-      </div>
+      </GenericLayout>
     )
   }
 }

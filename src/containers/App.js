@@ -2,9 +2,7 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import { createMuiTheme, withStyles } from 'material-ui/styles'
-
-import { Header } from 'components'
+import { createMuiTheme } from 'material-ui/styles'
 
 const theme = createMuiTheme({
   palette: {
@@ -19,37 +17,20 @@ const theme = createMuiTheme({
       main: '#92edd5',
       dark: '#60baa4',
       contrastText: '#402e24'
+    },
+    background: {
+      paper: '#fff',
+      default: '#fbf7ee'
     }
   }
 })
 
-const style = {
-  '@global': {
-    'html, body': {
-      height: '100%',
-      margin: 0
-    },
-    body: {
-      backgroundColor: '#fbf7ee'
-    }
-  },
-  content: {
-    marginTop: 80
-  }
-}
-
 const App = (props) => {
-  const { classes } = props
   return (
     <MuiThemeProvider theme={theme}>
-      <div>
-        <Header />
-        <div className={classes.content}>
-          { props.children }
-        </div>
-      </div>
+      { props.children }
     </MuiThemeProvider>
   )
 }
 
-export default hot(module)(withStyles(style)(App))
+export default hot(module)(App)

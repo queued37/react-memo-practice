@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import { withStyles } from 'material-ui/styles'
 import AppBar from 'material-ui/AppBar'
 import Toolbar from 'material-ui/Toolbar'
@@ -11,6 +12,10 @@ import SearchIcon from '@material-ui/icons/Search'
 const styles = {
   flex: {
     flex: 1
+  },
+  link: {
+    color: 'inherit',
+    textDecoration: 'none'
   }
 }
 
@@ -24,7 +29,7 @@ const Header = (props) => {
             <SearchIcon />
           </IconButton>
           <Typography variant='title' color='inherit' className={classes.flex}>
-            Memo Practice
+            <Link to='/' className={classes.link}>Memo Practice</Link>
           </Typography>
           {props.isSignedIn
             ? <Button color='inherit'>Sign out</Button>
