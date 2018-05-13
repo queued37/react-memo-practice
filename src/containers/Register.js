@@ -1,11 +1,11 @@
 import React from 'react'
-import { GenericLayout } from 'components'
+import { GenericLayout, Authentication } from 'components'
 
 class Register extends React.Component {
   render () {
     return (
       <GenericLayout>
-        Register
+        <Authentication mode='register' />
       </GenericLayout>
     )
   }

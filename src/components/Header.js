@@ -33,7 +33,10 @@ const Header = (props) => {
           </Typography>
           {props.isSignedIn
             ? <Button color='inherit'>Sign out</Button>
-            : <Button color='inherit'>Sign in</Button>
+            : <div>
+              <Button color='inherit'><Link to='/login' className={classes.link}>Sign in</Link></Button>
+              <Button color='inherit'><Link to='/register' className={classes.link}>Register</Link></Button>
+            </div>
           }
         </Toolbar>
       </AppBar>
