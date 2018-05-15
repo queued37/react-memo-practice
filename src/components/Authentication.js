@@ -60,7 +60,8 @@ class Authentication extends React.Component {
   }
 
   render () {
-    const { classes, mode } = this.props
+    const { username, password, confirmPassword } = this.state
+    const { classes, mode, onLogin } = this.props
 
     const loginView = (
       <div>
@@ -85,7 +86,14 @@ class Authentication extends React.Component {
               margin='normal'
               fullWidth
             />
-            <Button variant='raised' color='primary' className={classes.button}>Sign in</Button>
+            <Button
+              variant='raised'
+              color='primary'
+              className={classes.button}
+              onClick={() => onLogin(username, password)}
+            >
+              Sign in
+            </Button>
           </form>
         </div>
         <div className={classes.footer}>
@@ -128,7 +136,14 @@ class Authentication extends React.Component {
               margin='normal'
               fullWidth
             />
-            <Button variant='raised' color='primary' className={classes.button}>Register</Button>
+            <Button
+              variant='raised'
+              color='primary'
+              className={classes.button}
+              onClick={() => {}}
+            >
+              Register
+            </Button>
           </form>
         </div>
         <div className={classes.footer}>
@@ -154,7 +169,8 @@ class Authentication extends React.Component {
 
 Authentication.propTypes = {
   classes: PropTypes.object.isRequired,
-  mode: PropTypes.oneOf(['login', 'register']).isRequired
+  mode: PropTypes.oneOf(['login', 'register']).isRequired,
+  onLogin: PropTypes.func.isRequired
 }
 
 export default withStyles(style)(Authentication)
