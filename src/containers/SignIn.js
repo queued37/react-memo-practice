@@ -3,6 +3,7 @@ import { GenericLayout, Authentication } from 'components'
 import { connect } from 'react-redux'
 import { loginRequest } from 'actions/authentication'
 import { withRouter } from 'react-router-dom'
+import { notify } from 'actions/notification'
 
 class SignIn extends React.Component {
   constructor (props) {
@@ -19,17 +20,14 @@ class SignIn extends React.Component {
             username
           }
 
-          console.log('Success', loginData)
           document.cookie = 'key=' + window.btoa(JSON.stringify(loginData))
+          this.props.notify('Login succeeded!')
           this.props.history.push('/')
           return true
         } else {
-          console.log('Failure')
+          this.props.notify('Login failed.')
           return false
         }
-      },
-      error => {
-        console.error(error)
       }
     )
   }
@@ -50,12 +48,12 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   loginRequest: (username, password) => {
     return dispatch(loginRequest(username, password))
+  },
+  notify: (message) => {
+    return dispatch(notify(message))
   }
 })
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(SignIn)
+  connect(mapStateToProps, mapDispatchToProps)(SignIn)
 )

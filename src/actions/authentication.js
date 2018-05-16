@@ -1,4 +1,4 @@
-import * as types from 'constants/ActionTypes'
+import * as types from 'constants/AuthenticationActions'
 import axios from 'axios'
 
 export const login = () => ({type: types.AUTH_LOGIN})
@@ -12,10 +12,9 @@ export const loginRequest = (username, password) => {
 
     // Return API call promise
     return axios.post('/api/account/login', { username, password })
-      .then(response => {
+      .then(() => {
         dispatch(loginSuccess(username))
-      }).catch(error => {
-        console.error(error)
+      }, () => {
         dispatch(loginFailure())
       })
   }

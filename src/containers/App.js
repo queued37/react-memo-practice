@@ -4,6 +4,10 @@ import { hot } from 'react-hot-loader'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { createMuiTheme } from 'material-ui/styles'
 
+import { Route } from 'react-router-dom'
+import { Notification } from 'components'
+import { Home, SignIn, Register } from 'containers'
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -28,7 +32,10 @@ const theme = createMuiTheme({
 const App = (props) => {
   return (
     <MuiThemeProvider theme={theme}>
-      { props.children }
+      <Route exact path='/' component={Home} />
+      <Route path='/login' component={SignIn} />
+      <Route path='/register' component={Register} />
+      <Notification />
     </MuiThemeProvider>
   )
 }

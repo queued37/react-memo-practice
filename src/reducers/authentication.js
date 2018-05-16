@@ -1,4 +1,4 @@
-import * as types from 'constants/ActionTypes'
+import * as types from 'constants/AuthenticationActions'
 import update from 'immutability-helper'
 
 const initialState = {
